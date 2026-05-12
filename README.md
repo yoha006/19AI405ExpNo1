@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: NALINIPRIYA G </h3>
-<h3>Register Number/Staff Id: TSIT031</h3>
+<h3>Name: P.YOHALAKSHMI </h3>
+<h3>Register Number: 212224060314 </h3>
 
 
 <h3>AIM:</h3>
@@ -40,3 +40,49 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## Program
+```
+import random
+class HospitalAgent:
+    def __init__(self):
+        self.rooms = {"Room 1": 0, "Room 2": 0}
+        self.current_room = None
+        self.performance = 0
+    def take_temperature(self):
+        for room in self.rooms:
+            self.rooms[room] = round(random.uniform(97.0, 102.0), 1)
+    def check_and_treat(self, room):
+        temp = self.rooms[room]
+        print(f"\nChecking {room}... Temperature: {temp}°F")
+        if temp > 100.4:
+            print(f"{room}: Patient is unhealthy. Prescribing medicine")
+            self.performance += 10
+            print(f"Performance after treatment: {self.performance}")
+        else:
+            print(f"{room}: Patient is healthy")
+            print(f"Performance unchanged: {self.performance}")
+    def move_to_room(self, new_room):
+        if self.current_room and self.current_room != new_room:
+            print(f"\nMoving from {self.current_room} to {new_room}...")
+            self.performance -= 1
+            print(f"Performance after movement: {self.performance}")
+        self.current_room = new_room
+    def start(self):
+        print("Medicine Prescribing Agent started\n")
+        self.take_temperature()
+        rooms_list = list(self.rooms.keys())
+        random.shuffle(rooms_list)
+        for room in rooms_list:
+            self.move_to_room(room)
+            self.check_and_treat(room)
+        print("\nChecking completed!")
+        print(f"Final Performance Score: {self.performance}")
+agent = HospitalAgent()
+agent.start()
+```
+## Output
+<img width="591" height="518" alt="image" src="https://github.com/user-attachments/assets/1791cb6a-36c2-483e-89d1-f4c1148369d2" />
+
+## Result
+Thus an AI agent is developed
